@@ -24,7 +24,8 @@ public class MaterialSetter : MonoBehaviour {
 		}
 
 		if (materials.Count == 0) {
-			Debug.LogWarning("No materials set.");
+			Debug.LogError("No materials set.");
+			return;
 		}
 
 		if (startMaterial) {
@@ -37,8 +38,10 @@ public class MaterialSetter : MonoBehaviour {
 	/// </summary>
 	/// <param name="id">The id of the materials list.</param>
 	public void SetMaterial(int id) {
-		if (meshRenderer && id >= 0 && id < materials.Count) {
+		if (id >= 0 && id < materials.Count) {
 			meshRenderer.sharedMaterial = materials[id];
+		} else {
+			Debug.LogWarning("Invalid id. Id is out of range.");
 		}
 	}
 }
